@@ -20,9 +20,15 @@ public class CategoryService {
 	
 	
 	
-	  public Page<Category> getAllCategories(Pageable pageable) {
-	        return categoryrepository.findAll(pageable);
-	    }
+	
+//	  public Page<Category> getAllCategories(Pageable pageable) {
+//	        return categoryrepository.findAll(pageable);
+//	    }
+	
+	
+	public Page<Category> getAllCategories(int offset , int pagesize) {
+        return categoryrepository.findAll(PageRequest.of(offset, pagesize));
+    }
 	
 	
 	  public Category getCategoryById(Long id) {
