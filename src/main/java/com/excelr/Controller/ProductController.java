@@ -29,13 +29,20 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+		
+//	@GetMapping
+//	 public List<Product> getAllCategories(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "4") int size) {
+//        Pageable pageable = PageRequest.of(page, size);
+//        Page<Product> categoryPage = productService.getAllProducts(pageable);
+//        return categoryPage.getContent();
+//    }
 	
-	@GetMapping
-	 public List<Product> getAllCategories(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "4") int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Product> categoryPage = productService.getAllProducts(pageable);
-        return categoryPage.getContent();
-    }
+	 @GetMapping("pagination/{offset}/{pagesize}")
+	    public List<Product> getAllproducts(@PathVariable int offset,@PathVariable int pagesize) {
+		 Page<Product> paginationproducts = productService.getAllProducts(offset, pagesize);
+			return paginationproducts.getContent();
+	        
+	    }
 	
 	 @GetMapping("/{id}")
 	    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
