@@ -36,13 +36,13 @@ public class ProductService {
 	 
 	 public Product createProduct(Product product) {
 		    Category category = product.getCategory();
-		    // Save the category first if it's not already saved
+		   
 		    if (category.getId() == null) {
 		        category = categoryrepository.save(category);
 		    }
-		    // Set the category back to the product
+		    
 		    product.setCategory(category);
-		    // Now save the product
+		    
 		    return productRepository.save(product);
 		}
 	 
