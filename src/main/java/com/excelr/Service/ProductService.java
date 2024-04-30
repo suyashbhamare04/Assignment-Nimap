@@ -25,9 +25,14 @@ public class ProductService {
 	@Autowired
 	private Categoryrepository categoryrepository;
 	
-	 public Page<Product> getAllProducts(Pageable pageable) {
-	        return productRepository.findAll(pageable);
-	    }
+		
+//	 public Page<Product> getAllProducts(Pageable pageable) {
+//	        return productRepository.findAll(pageable);
+//	    }
+	
+	public Page<Product> getAllProducts(int offset , int pagesize) {
+        return productRepository.findAll(PageRequest.of(offset, pagesize));
+    }
 	 
 	 public Product getProductById(Long id) {
 	        Optional<Product> optionalProduct = productRepository.findById(id);
