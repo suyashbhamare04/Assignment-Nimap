@@ -31,11 +31,18 @@ public class CategoryController {
 	private CategoryService categoryService;
 	
 	
-	 @GetMapping
-	    public List<Category> getAllCategories(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "4") int size) {
-	        Pageable pageable = PageRequest.of(page, size);
-	        Page<Category> categoryPage = categoryService.getAllCategories(pageable);
-	        return categoryPage.getContent();
+	
+//	 @GetMapping
+//	    public List<Category> getAllCategories(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "4") int size) {
+//	        Pageable pageable = PageRequest.of(page, size);
+//	        Page<Category> categoryPage = categoryService.getAllCategories(pageable);
+//	        return categoryPage.getContent();
+//	    }
+	
+	 @GetMapping("pagination/{offset}/{pagesize}")
+	    public List<Category> getAllCategories(@PathVariable int offset,@PathVariable int pagesize) {
+	         Page<Category> caterorypagination = categoryService.getAllCategories(offset, pagesize);
+	        return caterorypagination.getContent();
 	    }
 	
 	
